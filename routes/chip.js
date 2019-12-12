@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { create, getChipsList } = require("../controllers/chip");
+const { createChip, getChipsList } = require("../controllers/chip");
 
-router.post("/print-resistance-table", create);
+router.post("/print-resistance-table", createChip);
 router.get("/get-chips-list", getChipsList);
 
 module.exports = router;

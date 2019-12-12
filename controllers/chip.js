@@ -1,6 +1,6 @@
 const Chip = require("../models/chip");
 
-exports.create = (req, res) => {
+exports.createChip = (req, res) => {
   const chip = new Chip(req.body);
   chip.save((err, result) => {
     if (err) {
