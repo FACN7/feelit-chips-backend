@@ -5,7 +5,8 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-const chipRoutes = require("./routes/chip");
+const sensorRoutes = require("./routes/sensor");
+const sensorCreateOptionsRoutes = require("./routes/sensorCreateOptions");
 
 const app = express();
 
@@ -20,7 +21,8 @@ mongoose.connect(process.env.DATABASE, {
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/", chipRoutes);
+app.use("/", sensorRoutes);
+app.use("/", sensorCreateOptionsRoutes);
 
 const port = process.env.PORT || 4000;
 
