@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 
 const sensorSchema = new mongoose.Schema(
   {
-    // Now putting settings inside specs
     specs: {
-      // Serial number is now auto-generated on BE
       serialNumber: {
         type: String,
         trim: true,
@@ -35,11 +33,9 @@ const sensorSchema = new mongoose.Schema(
         required: true,
         maxlength: 255
       },
-      // now adding name (this will need to be calculated on BE)
       // format for name is '${electrodeType}-${electrodePatchDate}-${Printer}-${inkType}-${concentraion}-${serialNum}'
       name: { type: String }
     },
-    // now we separate printing layer
     printingLayers: {
       a0: { type: String },
       a1: { type: String },
@@ -50,10 +46,9 @@ const sensorSchema = new mongoose.Schema(
       a6: { type: String },
       a7: { type: String }
     },
-    // now we have seperate array for all of resistance history
     resistanceSamplesHistory: [
       {
-        date: { type: Date },
+        createdAt: { type: Date },
         process: { type: String }, // initial/curing/coating/test
         a0: { type: String },
         a1: { type: String },
@@ -65,10 +60,9 @@ const sensorSchema = new mongoose.Schema(
         a7: { type: String }
       }
     ],
-    // curing history is seperate
     curingHistory: [
       {
-        date: { type: Date },
+        createdAt: { type: Date },
         type: { type: String }, // thermal or photonic
         a0: {
           min: { type: Number },
