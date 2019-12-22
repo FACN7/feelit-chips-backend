@@ -10,8 +10,6 @@ const sensorCreateOptionsRoutes = require("./routes/sensorCreateOptions");
 const userRoutes = require("./routes/user");
 const app = express();
 
-
-console.log("Env", process.env.DATABASE);
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useCreateIndex: true,
