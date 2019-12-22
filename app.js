@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 require("dotenv").config();
 
@@ -21,6 +22,7 @@ mongoose.connect(process.env.DATABASE, {
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use("/", sensorRoutes);
 app.use("/", sensorCreateOptionsRoutes);
