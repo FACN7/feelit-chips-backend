@@ -2,11 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const { createOptionCollection, getOptions, editOption } = require("../controllers/sensorCreateOptions");
+const { isAuth, isAdmin } = require("../controllers/auth");
 
-// add admin middleware
-router.post("/create-input-options", createOptionCollection);
-router.post("/edit-dropdown", editOption);
-//
+router.post("/create-input-options", isAuth, isAdmin, createOptionCollection);
+router.post("/edit-dropdown", isAuth, isAdmin, editOption);
 
 router.get("/print-inputs-options", getOptions);
 
