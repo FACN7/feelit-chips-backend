@@ -20,7 +20,7 @@ exports.isAuth = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-  if (res.locals.jwtPayload && !res.locals.jwtPayload.admin) {
+  if (!res.locals.jwtPayload || !res.locals.jwtPayload.admin) {
     return res.status(401).json({
       error: "Access denied! Admin Only!"
     });
