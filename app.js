@@ -8,7 +8,8 @@ require("dotenv").config();
 
 const sensorRoutes = require("./routes/sensor");
 const sensorCreateOptionsRoutes = require("./routes/sensorCreateOptions");
-const userRoutes = require("./routes/user");
+const userRoutes = require("./routes/User");
+const authRoutes = require("./routes/auth");
 const app = express();
 
 mongoose.connect(process.env.DATABASE, {
@@ -18,7 +19,7 @@ mongoose.connect(process.env.DATABASE, {
   dbName: process.env.DB_NAME,
   useFindAndModify: false
 }).then(() => console.log("DB CONNECTED"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("mongoose error", err));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use("/", sensorRoutes);
 app.use("/", sensorCreateOptionsRoutes);
 app.use("/", userRoutes);
+app.use("/", authRoutes);
 
 const port = process.env.PORT || 4000;
 
