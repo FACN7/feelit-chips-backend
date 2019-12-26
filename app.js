@@ -20,7 +20,11 @@ mongoose.connect(process.env.DATABASE, {
 }).then(() => console.log("DB CONNECTED"))
   .catch((err) => console.log(err));
 
-app.use(cors());
+app.use(cors({
+  origin: "https://feelit.netlify.com/",
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}));
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
