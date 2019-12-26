@@ -21,8 +21,8 @@ mongoose.connect(process.env.DATABASE, {
   .catch((err) => console.log(err));
 
 app.use(cors({
-  origin: "https://feelit.netlify.com/",
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: "https://feelit.netlify.com",
+  optionsSuccessStatus: 200
 }));
 
 app.use(bodyParser.json());
