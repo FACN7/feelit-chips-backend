@@ -22,7 +22,8 @@ mongoose.connect(process.env.DATABASE, {
 
 app.use(cors({
   origin: "https://feelit.netlify.com",
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
+  credentials: true
 }));
 
 app.use(bodyParser.json());
