@@ -5,10 +5,10 @@ require("dotenv").config();
 exports.inviteUser = (req, res) => {
   const invitedUserEMail = req.body.email;
   const invitedUserName = req.body.user;
-
+  const twoHoursFromNow = Math.floor(Date.now() / 1000) + (120 * 60);
   jwt.sign({
     email: invitedUserEMail,
-    exp: Math.floor(Date.now() / 1000) + (60 * 60)
+    exp: twoHoursFromNow
   }, process.env.SECRET, function (_err, token) {
     nodeoutlook.sendEmail({
       auth: {

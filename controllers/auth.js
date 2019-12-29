@@ -47,10 +47,12 @@ exports.logIn = (req, res) => {
     }
     const isAdmin = user.isAdmin;
     const employee = `${user.firstName} ${user.surname}`;
-    const token = jwt.sign({ employee, isAdmin }, process.env.SECRET);
-    const twoHoursFromNow = Math.floor(Date.now() / 1000) + (120 * 60);
-    res.cookie("jwt", token, { expire: twoHoursFromNow });
-    res.sendStatus(302);
+    jwt.sign({ employee, isAdmin }, process.env.SECRET, (_err, token) => {
+      if (_err) res.status(500).json({ error: _err });
+      const twoHoursFromNow = Math.floor(Date.now() / 1000) + (120 * 60);
+      res.cookie("jwt", token, { expire: twoHoursFromNow });
+      res.sendStatus(302);
+    });
   });
 };
 
