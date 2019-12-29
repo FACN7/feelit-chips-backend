@@ -8,8 +8,9 @@ require("dotenv").config();
 
 const sensorRoutes = require("./routes/sensor");
 const sensorCreateOptionsRoutes = require("./routes/sensorCreateOptions");
-const userRoutes = require("./routes/User");
+const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
+const inviteRoutes = require("./routes/invite");
 const app = express();
 
 mongoose.connect(process.env.DATABASE, {
@@ -29,6 +30,7 @@ app.use("/", sensorRoutes);
 app.use("/", sensorCreateOptionsRoutes);
 app.use("/", userRoutes);
 app.use("/", authRoutes);
+app.use("/", inviteRoutes);
 
 const port = process.env.PORT || 4000;
 
