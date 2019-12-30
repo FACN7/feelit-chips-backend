@@ -9,10 +9,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       maxlength: 255,
       validate: {
-        validator: (fname) => {
+        validator: function (fname) {
           return /^[A-Z]/.test(fname);
         },
-        message: fname => `${fname.value} is not a valid name (first letter should be capital)!`
+        message: "first name is not a valid name (first letter should be capital)!"
       }
     },
     surname: {
@@ -20,10 +20,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       maxlength: 255,
       validate: {
-        validator: (lname) => {
+        validator: function (lname) {
           return /^[A-Z]/.test(lname);
         },
-        message: lname => `${lname.value} is not a valid name (first letter should be capital)!`
+        message: "last name is not a valid name (first letter should be capital)!"
       }
     },
     hashed_password: {
@@ -37,10 +37,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       maxlength: 255,
       validate: {
-        validator: (email) => {
+        validator: function (email) {
           return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
         },
-        message: email => `${email.value} is not a valid email!`
+        message: "the email is not a valid email!"
       }
     },
     isAdmin: {
