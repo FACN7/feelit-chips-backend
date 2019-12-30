@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const expressValidator = require("express-validator");
 
 require("dotenv").config();
 
@@ -25,7 +26,7 @@ mongoose.connect(process.env.DATABASE, {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.use(expressValidator());
 app.use("/", sensorRoutes);
 app.use("/", sensorCreateOptionsRoutes);
 app.use("/", userRoutes);
