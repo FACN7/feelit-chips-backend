@@ -7,12 +7,24 @@ const userSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
-      maxlength: 255
+      maxlength: 255,
+      validate: {
+        validator: (fname) => {
+          return /^[A-Z]/.test(fname);
+        },
+        message: fname => `${fname.value} is not a valid name (first letter should be capital)!`
+      }
     },
     surname: {
       type: String,
       required: true,
-      maxlength: 255
+      maxlength: 255,
+      validate: {
+        validator: (lname) => {
+          return /^[A-Z]/.test(lname);
+        },
+        message: lname => `${lname.value} is not a valid name (first letter should be capital)!`
+      }
     },
     hashed_password: {
       type: String,
@@ -23,7 +35,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true,
       required: true,
-      maxlength: 255
+      maxlength: 255,
+      validate: {
+        validator: (email) => {
+          return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+        },
+        message: email => `${email.value} is not a valid email!`
+      }
     },
     isAdmin: {
       type: Boolean,
